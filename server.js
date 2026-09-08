@@ -5,8 +5,20 @@ const cors = require('cors');
 const app = express();
 const mongoose = require('mongoose');
 
+const allowedOrigins = [
+    'https://retro-garage-frontend.onrender.com',
+    'http://localhost:5173'
+];
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Blocked by CORS policy'));
+        }
+    }
+}));
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('Connected to DA mongo'))
