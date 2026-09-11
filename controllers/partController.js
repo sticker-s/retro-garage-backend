@@ -3,8 +3,8 @@ const Part = require('../models/Part');
 const getAllParts = async (req, res) => {
     try {
         const allParts = await Part.find();
-        const justPartNames = allParts.map(part => part.name);
-        res.json(justPartNames);
+        // const justPartNames = allParts.map(part => part.name);
+        res.json(allParts);
     } catch (error) {
         res.status(500).json({ message: "Error fetching parts" });
     }
