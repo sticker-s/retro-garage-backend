@@ -25,9 +25,9 @@ const addPart = async (req, res) => {
 
 const deletePart = async (req, res) => {
     try {
-        const itemToRemove = req.params.partName;
-        await Part.deleteOne({ name: itemToRemove });
-        res.json({ status: "Success", message: `${itemToRemove} deleted from da mongo` });
+        const itemToRemove = req.params.id;
+        await Part.deleteOne({ _id: id });
+        res.json({ status: "Success", message: `deleted from da mongo` });
 
     } catch (error) {
         res.status(500).json({ message: "Error deleting from da database" });
@@ -36,10 +36,10 @@ const deletePart = async (req, res) => {
 };
 const updatePart = async (req, res) => {
     try {
-        const oldName = req.params.partName;
+        const id = req.params.id;
         const newName = req.body.newName;
 
-        await Part.updateOne({ name: oldName }, { $set: { name: newName } });
+        await Part.updateOne({ _id: id }, { $set: { name: newName } });
         res.json({ status: "success", message: "Part updated successfully" });
 
     } catch (error) {
