@@ -12,9 +12,11 @@ const getAllParts = async (req, res) => {
 
 const addPart = async (req, res) => {
     try {
-        const itemToAdd = req.body.newPart;
+        const parts = req.body;
         const newPart = new Part({
-            name: itemToAdd
+            name: parts.newPart,
+            quantity: parts.quantity,
+            price: parts.price
         });
         await newPart.save();
         res.json({ status: "success", message: "Part added to database!" })
