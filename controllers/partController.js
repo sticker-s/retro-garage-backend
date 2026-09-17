@@ -12,11 +12,11 @@ const getAllParts = async (req, res) => {
 
 const addPart = async (req, res) => {
     try {
-        const parts = req.body;
+        const { newPartName, quantity, price } = req.body;
         const newPart = new Part({
-            name: parts.newPart,
-            quantity: parts.quantity,
-            price: parts.price
+            name: newPartName,
+            quantity: quantity,
+            price: price
         });
         await newPart.save();
         res.json({ status: "success", message: "Part added to database!" })
@@ -39,9 +39,9 @@ const deletePart = async (req, res) => {
 const updatePart = async (req, res) => {
     try {
         const id = req.params.id;
-        const newName = req.body.newName;
+        const { newName, newPrice, newQuantity } = req.body;
 
-        await Part.updateOne({ _id: id }, { $set: { name: newName } });
+        await Part.updateOne({ _id: id }, { $set: { name: newName, price: newPrice, quantity: newQuantity } });
         res.json({ status: "success", message: "Part updated successfully" });
 
     } catch (error) {
