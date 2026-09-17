@@ -25,7 +25,7 @@ const addPart = async (req, res) => {
 
 const deletePart = async (req, res) => {
     try {
-        const itemToRemove = req.params.id;
+        const id = req.params.id;
         await Part.deleteOne({ _id: id });
         res.json({ status: "Success", message: `deleted from da mongo` });
 
