@@ -6,7 +6,7 @@ const app = express();
 const mongoose = require('mongoose');
 
 const allowedOrigins = [
-    'https://retro-garage-frontend.onrender.com/',
+    'https://retro-garage-frontend.onrender.com',
     'http://localhost:5173'
 ];
 app.use(express.json());
